@@ -1,6 +1,8 @@
 package com.wich0d.foro.controller;
 
-import com.wich0d.foro.topicos.*;
+import com.wich0d.foro.domain.topicos.Topico;
+import com.wich0d.foro.domain.topicos.TopicoRepository;
+import com.wich0d.foro.domain.topicos.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +12,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/topicos")
 public class TopicoController {
     @Autowired
     private TopicoRepository topicoRepository;
-    //Post
     @PostMapping
     @Transactional
     public ResponseEntity subirTopico(@RequestBody @Valid DatosSubirTopico datos){
@@ -26,7 +25,6 @@ public class TopicoController {
                 topico.getId(), topico.getTitulo(),topico.getMensaje(),topico.getFecha(),topico.getStatus(),topico.getAutor(),topico.getCurso()
         ));
     }
-    //Get
     @GetMapping
     public ResponseEntity<Page<DatosListadoTopicos>> mostrarTopicos(@PageableDefault(size=10)Pageable paginacion){
         return  ResponseEntity.ok(topicoRepository.findAllByOrderByFechaAsc(paginacion).map(DatosListadoTopicos::new));
@@ -40,7 +38,6 @@ public class TopicoController {
                 topico.getTitulo(),topico.getMensaje(),topico.getFecha(),topico.getStatus(),topico.getAutor(),topico.getCurso()
         ));
     }
-    //Put
     @PutMapping
     @Transactional
     public  ResponseEntity<DatosRespuestaTopico> actualizarTopico(@RequestBody @Valid DatosActualizarTopico datos){
@@ -50,7 +47,6 @@ public class TopicoController {
                 topico.getId(), topico.getTitulo(),topico.getMensaje(),topico.getFecha(),topico.getStatus(),topico.getAutor(),topico.getCurso()
         ));
     }
-    //Delete
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity eliminarTopico(@PathVariable Long id){

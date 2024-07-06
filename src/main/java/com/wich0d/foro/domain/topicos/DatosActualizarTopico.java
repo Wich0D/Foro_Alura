@@ -1,6 +1,5 @@
-package com.wich0d.foro.topicos;
+package com.wich0d.foro.domain.topicos;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;

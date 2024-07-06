@@ -1,4 +1,4 @@
-package com.wich0d.foro.topicos;
+package com.wich0d.foro.domain.topicos;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
