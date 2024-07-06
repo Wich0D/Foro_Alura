@@ -13,6 +13,7 @@ public record DatosRespuestaTopico(
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
         LocalDateTime fecha,
         EstadosTopico status,
-        String autor
+        String autor,
+        Cursos curso
 ) {
 }

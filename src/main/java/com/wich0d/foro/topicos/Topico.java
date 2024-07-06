@@ -27,6 +27,8 @@ public class Topico {
     @Enumerated(EnumType.STRING)
     private EstadosTopico status;
     private String autor;
+    @Enumerated(EnumType.STRING)
+    private Cursos curso;
 
     public Topico(DatosSubirTopico datos) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -37,5 +39,18 @@ public class Topico {
         this.fecha = LocalDateTime.parse(fechaFormateada, formatter);
         this.status = EstadosTopico.PENDIENTE;
         this.autor = datos.autor();
+        this.curso = datos.curso();
+    }
+
+    public void actualizarDatos(DatosActualizarTopico datos) {
+        if(datos.titulo() != null){
+            this.titulo = datos.titulo();
+        }
+        if(datos.mensaje() != null){
+            this.mensaje = datos.mensaje();
+        }
+        if(datos.status() != null){
+            this.status = datos.status();
+        }
     }
 }
