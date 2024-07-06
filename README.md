@@ -17,13 +17,13 @@ La estructura de los tópcios utilizados en este proyecto es:
 
 ## CRUD
 Para poder gestionar los tópicos del foro, aplicamos un sistema CRUD que nos ayudará a poder manejar estos datos de una forma eficaz y sencilla de comprender.
-Para poder conectar la aplicación a un servidor se esta utilizando la dependencia *Spring web* y la clase _topicoController_ que es la clase correspondiente a la implementación y gestión de el CRUD.
-Se utiliza un repositorio utilizando la dependencia *JPA* para poder declarar funciones que nos ayuden a hacer consultas en la abse de datos.
+Para poder conectar la aplicación a un servidor se esta utilizando la dependencia **Spring web** y la clase _topicoController_ que es la clase correspondiente a la implementación y gestión de el CRUD.
+Se utiliza un repositorio utilizando la dependencia **JPA** para poder declarar funciones que nos ayuden a hacer consultas en la abse de datos.
 Cada uno de los métodos implementados retorna un valor tipo *ResponseEntity* y en algunos casos acompañados de otras clases cuya nomenclatura comienza con "_Datos..._", esta nomenclatura se está utlizando para aquellas clases DTO cuyo objetivo es mostrar los datos de salida que se obtuvieron de las operaciones que se realizaron.
 
 ### POST 
-Comenzamos por el *POST*, este es el encargado de la escritura de la base de datos, es decir, con POST añadimos nuevos tópicos. 
-La función encargada de realizar esta función es *_subirTopico_*, esta es su estructura:
+Comenzamos por el *POST*, este es el encargado de la escritura de la base de datos, es decir, con *POST* añadimos nuevos tópicos. 
+La función encargada de realizar esta función es **_subirTopico_**, esta es su estructura:
 ```java
   @PostMapping
     @Transactional
@@ -36,7 +36,7 @@ La función encargada de realizar esta función es *_subirTopico_*, esta es su e
 ```
 ### GET
 Se utiliza para poder leer los datos de la base de datos, utilizando GET podemos observar los datos de la base de datos. 
-Se utiliza la funcion *_mostrarTopicos_* para poder observar un listado de 10 tópicos ordenados de forma ascendente por su fecha de creación.
+Se utiliza la funcion **_mostrarTopicos_** para poder observar un listado de 10 tópicos ordenados de forma ascendente por su fecha de creación.
 ```java
 @GetMapping
     public ResponseEntity<Page<DatosListadoTopicos>> mostrarTopicos(@PageableDefault(size=10)Pageable paginacion){
@@ -56,7 +56,7 @@ Se utiliza la función *_mostrarTopicoEspecifico_* para poder observar un topico
 ```
 ### PUT
 Se utiliza para poder editar o actualizar datos ya registrados en la base de datos sin necesidad de crear nuevos registros.
-Se utiliza la función *_actualizarTopico_* para poder actualizar un topico proporcionando su id, es importante tomar en cuenta que *solo* podemos editar, el titulo, el mensaje y el estado del tópico.
+Se utiliza la función **_actualizarTopico_** para poder actualizar un topico proporcionando su id, es importante tomar en cuenta que **solo** podemos editar, el titulo, el mensaje y el estado del tópico.
 ```java
   @PutMapping
     @Transactional
@@ -70,7 +70,7 @@ Se utiliza la función *_actualizarTopico_* para poder actualizar un topico prop
 ```
 ### DELETE
 Se utiliza para eliminar o borrar un registro de la base de datos. 
-Se utiliza la función *_eliminarTopico_* que elimina un registro a partir del id que se proporcione.
+Se utiliza la función **_eliminarTopico_** que elimina un registro a partir del id que se proporcione.
 ```java
   @DeleteMapping("/{id}")
     @Transactional
