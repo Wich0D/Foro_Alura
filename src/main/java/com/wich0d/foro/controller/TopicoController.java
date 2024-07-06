@@ -17,6 +17,7 @@ import java.util.Optional;
 public class TopicoController {
     @Autowired
     private TopicoRepository topicoRepository;
+    //Post
     @PostMapping
     @Transactional
     public ResponseEntity subirTopico(@RequestBody @Valid DatosSubirTopico datos){
@@ -25,6 +26,7 @@ public class TopicoController {
                 topico.getId(), topico.getTitulo(),topico.getMensaje(),topico.getFecha(),topico.getStatus(),topico.getAutor(),topico.getCurso()
         ));
     }
+    //Get
     @GetMapping
     public ResponseEntity<Page<DatosListadoTopicos>> mostrarTopicos(@PageableDefault(size=10)Pageable paginacion){
         return  ResponseEntity.ok(topicoRepository.findAllByOrderByFechaAsc(paginacion).map(DatosListadoTopicos::new));
@@ -38,6 +40,7 @@ public class TopicoController {
                 topico.getTitulo(),topico.getMensaje(),topico.getFecha(),topico.getStatus(),topico.getAutor(),topico.getCurso()
         ));
     }
+    //Put
     @PutMapping
     @Transactional
     public  ResponseEntity<DatosRespuestaTopico> actualizarTopico(@RequestBody @Valid DatosActualizarTopico datos){
@@ -47,6 +50,7 @@ public class TopicoController {
                 topico.getId(), topico.getTitulo(),topico.getMensaje(),topico.getFecha(),topico.getStatus(),topico.getAutor(),topico.getCurso()
         ));
     }
+    //Delete
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity eliminarTopico(@PathVariable Long id){
